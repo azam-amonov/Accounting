@@ -14,5 +14,8 @@ public partial class StorageBroker
     public async ValueTask<Transaction>
         UpdateTransactionAsync(Transaction transaction) =>
         await this.UpdateAsync(transaction);
-
+    
+    public async ValueTask<Transaction> 
+        DeleteTransactionAsync(Transaction transaction) =>
+        await this.DeleteAsync(transaction);
 }

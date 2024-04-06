@@ -12,4 +12,7 @@ public partial class StorageBroker
 
     public IQueryable<User> SelectAllUsers() =>
         SelectAll<User>();
+    
+    public async ValueTask<User> UpdateUserAsync(User user) =>
+        await this.UpdateAsync(user);
 }

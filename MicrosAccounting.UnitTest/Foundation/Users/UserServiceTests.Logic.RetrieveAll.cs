@@ -1,6 +1,7 @@
 using FluentAssertions;
 using MicrosAccounting.Api.Models.Users;
 using Moq;
+using Xunit;
 
 namespace MicrosAccounting.UnitTest.Foundation.Users;
 

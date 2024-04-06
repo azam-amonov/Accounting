@@ -15,6 +15,7 @@ public partial class StorageBroker
 
     public async ValueTask<User?> SelectUserByIdAsync(Guid userId) =>
         await this.SelectAsync<User>(userId);
+    
     public async ValueTask<User> UpdateUserAsync(User user) =>
         await this.UpdateAsync(user);
     

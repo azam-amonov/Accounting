@@ -14,27 +14,27 @@ public partial class UserServiceTests
         User randomUser = CreateRandomUser();
         User inputUser = randomUser;
         User persistedUser = inputUser;
-        User updatedUser  = persistedUser;
+        User updatedUser  = inputUser;
         User expectedUser = updatedUser.DeepClone();
         Guid inputUserId = inputUser.Id;
 
         this.storageBrokerMock.Setup(broker =>
             broker.SelectUserByIdAsync(inputUserId))
-                .ReturnsAsync(expectedUser);
+                .ReturnsAsync(persistedUser);
 
         this.storageBrokerMock.Setup(broker => 
             broker.UpdateUserAsync(inputUser))
                 .ReturnsAsync(updatedUser);
         
         //when
-        User actualUser = 
+        User actualModifiedUser = 
             await this.userService.ModifyUserAsync(inputUser);
         
         //then
-        actualUser.Should().BeEquivalentTo(expectedUser);
+        actualModifiedUser.Should().BeEquivalentTo(expectedUser);
         
         this.storageBrokerMock.Verify(broker => 
-            broker.SelectUserByIdAsync(inputUser.Id), Times.Once);
+            broker.SelectUserByIdAsync(inputUserId), Times.Once);
 
         this.storageBrokerMock.Verify(broker =>
             broker.UpdateUserAsync(inputUser), Times.Once);

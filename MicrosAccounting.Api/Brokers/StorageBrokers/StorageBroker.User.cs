@@ -17,5 +17,5 @@ public partial class StorageBroker
         await this.UpdateAsync(user);
     
     public async ValueTask<User> DeleteUserAsync(User user) =>
-        await this.DeleteAsync(user) ;
+        await this.DeleteAsync(user);
 }

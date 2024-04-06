@@ -5,4 +5,6 @@ namespace MicrosAccounting.Api.Brokers.StorageBrokers;
 public partial interface IStorageBroker
 {
     ValueTask<Transaction> InsertTransactionAsync(Transaction transaction);
+    IQueryable<Transaction> SelectAllTransaction();
+    
 }

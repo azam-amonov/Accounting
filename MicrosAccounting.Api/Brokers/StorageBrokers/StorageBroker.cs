@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MicrosAccounting.Api.Brokers.StorageBrokers;
 
-public class StorageBroker : EFxceptionsContext , IStorageBroker
+public partial class StorageBroker : EFxceptionsContext , IStorageBroker
 {
     private readonly IConfiguration configuration;
 

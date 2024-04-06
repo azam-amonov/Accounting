@@ -9,4 +9,7 @@ public partial class StorageBroker
     
     public async ValueTask<User> InsertUserAsync(User user) =>
         await this.InsertAsync(user);
+
+    public IQueryable<User> SelectAllUsers() =>
+        SelectAll<User>();
 }

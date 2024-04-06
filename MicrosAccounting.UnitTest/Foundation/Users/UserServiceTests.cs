@@ -1,4 +1,5 @@
 using System.Linq.Expressions;
+using MicrosAccounting.Api.Brokers.DateTimeBrokers;
 using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Models.Users;
 using MicrosAccounting.Api.Services.Foundations.Users;
@@ -8,15 +9,15 @@ using Xeptions;
 
 namespace MicrosAccounting.UnitTest.Foundation.Users;
 
-public class UserServiceTests
+public partial class UserServiceTests
 {
     private readonly Mock<IStorageBroker> storageBrokerMock;
-    private readonly IUserService usrerService;
+    private readonly IUserService userService;
 
     public UserServiceTests()
     {
         this.storageBrokerMock = new Mock<IStorageBroker>();
-        this.usrerService = new UserService(
+        this.userService = new UserService(
             storageBroker: this.storageBrokerMock.Object);
     }
 
@@ -33,6 +34,10 @@ public class UserServiceTests
     private static IQueryable<User> CreateRandomUsers() =>
         CreateRandomUserFiller().Create(count: GetRandomNumber()).AsQueryable();
 
-    private static Filler<User> CreateRandomUserFiller() =>
-        new Filler<User>();
+    private static Filler<User> CreateRandomUserFiller()
+    {
+        var filler = new Filler<User>();
+        filler.Setup().OnType<DateTimeOffset>().IgnoreIt();
+        return filler;
+    }
 }

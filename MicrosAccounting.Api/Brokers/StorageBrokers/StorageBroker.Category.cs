@@ -9,4 +9,7 @@ public partial class StorageBroker
 
     public async ValueTask<Category> InsertCategoryAsync(Category category) =>
         await this.InsertAsync(category);
+    
+    public IQueryable<Category> SelectAllCategories() =>
+        this.SelectAll<Category>();
 }

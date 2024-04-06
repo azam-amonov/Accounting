@@ -15,4 +15,7 @@ public partial class StorageBroker
 
     public async ValueTask<Category> UpdateCategoryAsync(Category category) =>
         await this.UpdateAsync(category);
+
+    public async ValueTask<Category> DeleteCategoryAsync(Category category) =>
+        await this.DeleteAsync(category);
 }

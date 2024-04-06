@@ -14,5 +14,5 @@ public partial class StorageBroker
         SelectAll<User>();
     
     public async ValueTask<User> UpdateUserAsync(User user) =>
-        await this.UpdateAsync(user);
+        await this.UpdateAsync(user) ;
 }

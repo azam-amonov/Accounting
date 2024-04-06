@@ -18,6 +18,12 @@ public class UserService: IUserService
     public IQueryable<User> RetrieveAllUsers() =>
         this.storageBroker.SelectAllUsers();
 
+    public async ValueTask<User?> RetrieveUserById(Guid userId) =>
+        await this.storageBroker.SelectUserByIdAsync(userId);
+    
     public ValueTask<User> ModifyUserAsync(User user) =>
         this.storageBroker.UpdateUserAsync(user);
+
+    public async ValueTask<User> RemoveUserAsync(User user) =>
+        await this.storageBroker.DeleteUserAsync(user);
 }

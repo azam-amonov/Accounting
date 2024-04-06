@@ -11,8 +11,10 @@ public partial class StorageBroker
         await this.InsertAsync(user);
 
     public IQueryable<User> SelectAllUsers() =>
-        SelectAll<User>();
-    
+        this.SelectAll<User>();
+
+    public async ValueTask<User?> SelectUserByIdAsync(Guid userId) =>
+        await this.SelectAsync<User>(userId);
     public async ValueTask<User> UpdateUserAsync(User user) =>
         await this.UpdateAsync(user);
     

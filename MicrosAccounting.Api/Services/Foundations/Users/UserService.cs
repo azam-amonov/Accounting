@@ -13,5 +13,5 @@ public class UserService: IUserService
     }
 
     public ValueTask<User> AddUserAsync(User user) =>
-        throw new NotImplementedException();
+        this.storageBroker.InsertUserAsync(user);
 }

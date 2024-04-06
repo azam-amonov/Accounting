@@ -17,4 +17,7 @@ public class UserService: IUserService
 
     public IQueryable<User> RetrieveAllUsers() =>
         this.storageBroker.SelectAllUsers();
+
+    public ValueTask<User> ModifyUserAsync(User user) =>
+        throw new NotImplementedException();
 }

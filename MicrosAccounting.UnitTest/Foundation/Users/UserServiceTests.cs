@@ -21,10 +21,10 @@ public partial class UserServiceTests
             storageBroker: this.storageBrokerMock.Object);
     }
 
-    private static Expression<Func<Xeption, bool>> 
-        SameExceptionAs(Xeption expectedException) => 
+    private static Expression<Func<Xeption, bool>>
+        SameExceptionAs(Xeption expectedException) =>
         actualException => actualException.SameExceptionAs(expectedException);
-    
+
     private static int GetRandomNumber() =>
         new IntRange(min: 2, max: 9).GetValue();
 

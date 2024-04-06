@@ -6,4 +6,5 @@ public partial interface IStorageBroker
 {
     ValueTask<Category> InsertCategoryAsync(Category category);
     IQueryable<Category> SelectAllCategories();
+    ValueTask<Category> UpdateCategoryAsync(Category category);
 }

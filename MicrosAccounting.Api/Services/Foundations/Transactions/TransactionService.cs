@@ -1,7 +1,8 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Models.Transactions;
+using MicrosAccounting.Api.Services.Transactions;
 
-namespace MicrosAccounting.Api.Services.Transactions;
+namespace MicrosAccounting.Api.Services.Foundations.Transactions;
 
 public class TransactionService : ITransactionService
 {
@@ -15,12 +16,14 @@ public class TransactionService : ITransactionService
     public async ValueTask<Transaction> AddTransactionAsync(Transaction transaction) =>
         await this.storageBroker.InsertTransactionAsync(transaction);
 
-    public IQueryable<Transaction> RetrieveTransactionsAsync() =>
+    public IQueryable<Transaction> RetrieveAllTransactions() =>
         this.storageBroker.SelectTransactions();
 
+    public async ValueTask<Transaction> RetrieveTransactionById(Guid transactionId) =>
+        await this.storageBroker.SelectTransactionByIdAsync(transactionId);
     public async ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction) =>
         await this.storageBroker.UpdateTransactionAsync(transaction);
 
-    public ValueTask<Transaction> RemoveTransactionAsync(Transaction transaction) =>
-        this.storageBroker.DeleteTransactionAsync(transaction);
+    public ValueTask<Transaction> RemoveTransactionByIdAsync(Guid transactionId) =>
+        this.storageBroker.DeleteTransactionByIdAsync(transactionId);
 }

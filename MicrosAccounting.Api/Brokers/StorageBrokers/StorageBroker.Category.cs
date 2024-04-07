@@ -13,9 +13,15 @@ public partial class StorageBroker
     public IQueryable<Category> SelectAllCategories() =>
         this.SelectAll<Category>();
 
+    public async ValueTask<Category> SelectCategoryByIdAsync(Guid categoryId) =>
+        await this.SelectAsync<Category>(categoryId);
+
     public async ValueTask<Category> UpdateCategoryAsync(Category category) =>
         await this.UpdateAsync(category);
 
-    public async ValueTask<Category> DeleteCategoryAsync(Category category) =>
-        await this.DeleteAsync(category);
+    public async ValueTask<Category> DeleteCategoryByIdAsync(Guid categoryId)
+    {
+        var maybeCategory = await SelectCategoryByIdAsync(categoryId);
+        return await this.DeleteAsync(maybeCategory);
+    }
 }

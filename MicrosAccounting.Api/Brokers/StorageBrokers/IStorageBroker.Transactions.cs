@@ -6,6 +6,7 @@ public partial interface IStorageBroker
 {
     ValueTask<Transaction> InsertTransactionAsync(Transaction transaction);
     IQueryable<Transaction> SelectTransactions();
+    ValueTask<Transaction?> SelectTransactionByIdAsync(Guid transactionId);
     ValueTask<Transaction> UpdateTransactionAsync(Transaction transaction);
-    ValueTask<Transaction> DeleteTransactionAsync(Transaction transaction);
+    ValueTask<Transaction> DeleteTransactionByIdAsync(Guid transactionId);
 }

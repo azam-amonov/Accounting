@@ -24,6 +24,6 @@ public class UserService: IUserService
     public ValueTask<User> ModifyUserAsync(User user) =>
         this.storageBroker.UpdateUserAsync(user);
 
-    public async ValueTask<User> RemoveUserAsync(User user) =>
-        await this.storageBroker.DeleteUserAsync(user);
+    public async ValueTask<User> RemoveUserByIdAsync(Guid userId) =>
+        await this.storageBroker.DeleteUserByIdAsync(userId);
 }

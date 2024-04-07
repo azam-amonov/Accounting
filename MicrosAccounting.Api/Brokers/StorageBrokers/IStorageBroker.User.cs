@@ -8,5 +8,5 @@ public partial interface IStorageBroker
     IQueryable<User> SelectAllUsers();
     ValueTask<User?> SelectUserByIdAsync(Guid id);
     ValueTask<User> UpdateUserAsync(User user);
-    ValueTask<User> DeleteUserAsync(User user);
+    ValueTask<User> DeleteUserByIdAsync(Guid userId);
 }

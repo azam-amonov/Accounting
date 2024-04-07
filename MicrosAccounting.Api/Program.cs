@@ -2,6 +2,7 @@ using MicrosAccounting.Api.Brokers.DateTimeBrokers;
 using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Services.Foundations;
 using MicrosAccounting.Api.Services.Foundations.Categories;
+using MicrosAccounting.Api.Services.Foundations.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Users;
 using MicrosAccounting.Api.Services.Transactions;
 

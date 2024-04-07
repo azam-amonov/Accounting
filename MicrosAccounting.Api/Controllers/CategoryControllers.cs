@@ -54,5 +54,6 @@ public class CategoryControllers : ControllerBase
         Category deleteCategory = await this.categoryService.RemoveCategoryByIdAsync(categoryId);
         
         return Ok(deleteCategory);
+        
     }
 }

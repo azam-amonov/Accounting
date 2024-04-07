@@ -8,5 +8,5 @@ public interface ICategoryService
     IQueryable<Category> RetrieveAllCategories();
     ValueTask<Category> RetrieveCategoryByIdAsync(Guid categoryId);
     ValueTask<Category> ModifyCategoryAsync(Category category);
-    ValueTask<Category> RemoveCategoryAsync(Category category);
+    ValueTask<Category> RemoveCategoryByIdAsync(Guid categoryId);
 }

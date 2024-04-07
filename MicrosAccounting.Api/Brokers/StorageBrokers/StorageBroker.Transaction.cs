@@ -11,11 +11,19 @@ public partial class StorageBroker
     public IQueryable<Transaction> SelectTransactions() =>
         this.SelectAll<Transaction>();
 
+    public async ValueTask<Transaction?> 
+        SelectTransactionByIdAsync(Guid transactionId) =>
+        await this.SelectAsync<Transaction>(transactionId);
+
     public async ValueTask<Transaction>
         UpdateTransactionAsync(Transaction transaction) =>
         await this.UpdateAsync(transaction);
-    
+
     public async ValueTask<Transaction> 
-        DeleteTransactionAsync(Transaction transaction) =>
-        await this.DeleteAsync(transaction);
+        DeleteTransactionByIdAsync(Guid transactionId) 
+    {
+        var maybeTransaction = await SelectTransactionByIdAsync(transactionId);
+        var deletedTransaction = await this.DeleteAsync(maybeTransaction);
+        return deletedTransaction;
+    }
 }

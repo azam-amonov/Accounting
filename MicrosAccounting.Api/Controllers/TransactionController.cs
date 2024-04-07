@@ -31,14 +31,15 @@ public class TransactionController : ControllerBase
         return Ok(retrievedTransactions);
     }
 
-    [HttpGet]
+    [HttpGet( "{guid}")]
+
     public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
     {
-        Transaction maybeTransaction = await transactionService.RemoveTransactionByIdAsync(transactionId);
+        Transaction maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
         
         return Ok(maybeTransaction);
     }
-
+    
     [HttpPut]
     public async ValueTask<ActionResult<Transaction>> PutTransaction(Transaction transaction)
     {
@@ -46,13 +47,13 @@ public class TransactionController : ControllerBase
         
         return Ok(putTransaction);
     }
-
+    
     [HttpDelete( "{guid}")]
-
+    
     public async ValueTask<ActionResult<Transaction>> DeleteTransactionById(Guid transactionId)
     {
         Transaction deletedTransaction = await transactionService.RemoveTransactionByIdAsync(transactionId);
-
-        return deletedTransaction;
+    
+        return Ok(deletedTransaction);
     }
 }

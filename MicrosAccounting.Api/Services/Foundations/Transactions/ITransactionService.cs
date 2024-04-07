@@ -6,7 +6,7 @@ public interface ITransactionService
 {
     ValueTask<Transaction> AddTransactionAsync(Transaction transaction);
     IQueryable<Transaction> RetrieveAllTransactions();
-    ValueTask<Transaction> RetrieveTransactionById(Guid transactionId);
+    ValueTask<Transaction> RetrieveTransactionByIdAsync(Guid transactionId);
     ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction);
     ValueTask<Transaction> RemoveTransactionByIdAsync(Guid transactionId);
 }

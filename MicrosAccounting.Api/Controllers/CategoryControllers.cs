@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicrosAccounting.Api.Controllers;
 
 [ApiController]
-[Route("api{controller}")]
-public class CategoryControllers : ControllerBase
+[Route("api/[controller]")]
+public class CategoryController : ControllerBase
 {
     private readonly ICategoryService categoryService;
 
-    public CategoryControllers(ICategoryService categoryService)
+    public CategoryController(ICategoryService categoryService)
     {
         this.categoryService = categoryService;
     }
@@ -27,10 +27,10 @@ public class CategoryControllers : ControllerBase
     public ActionResult<IQueryable<Category>> GetAllCategory()
     {
         IQueryable<Category> categories = this.categoryService.RetrieveAllCategories();
-
+    
         return Ok(categories);
     }
-
+    
     [HttpGet("{guid}")]
     public async ValueTask<ActionResult<Category>> GetCategoryById(Guid categoryId)
     {
@@ -38,7 +38,7 @@ public class CategoryControllers : ControllerBase
         
         return Ok(category);
     }
-
+    
     [HttpPut]
     public async ValueTask<ActionResult<Category>> PutCategory(Category category)
     {
@@ -46,14 +46,13 @@ public class CategoryControllers : ControllerBase
         
         return Ok(updateCategory);
     }
-
+    
     [HttpDelete("{guid}")]
-
+    
     public async ValueTask<ActionResult<Category>> DeleteByIdCategory(Guid categoryId)
     {
         Category deleteCategory = await this.categoryService.RemoveCategoryByIdAsync(categoryId);
         
         return Ok(deleteCategory);
-        
     }
 }

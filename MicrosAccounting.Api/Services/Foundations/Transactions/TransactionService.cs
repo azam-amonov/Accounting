@@ -19,7 +19,7 @@ public class TransactionService : ITransactionService
     public IQueryable<Transaction> RetrieveAllTransactions() =>
         this.storageBroker.SelectTransactions();
 
-    public async ValueTask<Transaction> RetrieveTransactionById(Guid transactionId) =>
+    public async ValueTask<Transaction> RetrieveTransactionByIdAsync(Guid transactionId) =>
         await this.storageBroker.SelectTransactionByIdAsync(transactionId);
     public async ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction) =>
         await this.storageBroker.UpdateTransactionAsync(transaction);

@@ -8,5 +8,5 @@ public partial interface IStorageBroker
     IQueryable<Category> SelectAllCategories();
     ValueTask<Category> SelectCategoryByIdAsync(Guid categoryId);
     ValueTask<Category> UpdateCategoryAsync(Category category);
-    ValueTask<Category> DeleteCategoryAsync(Category category);
+    ValueTask<Category> DeleteCategoryByIdAsync(Guid categoryId);
 }

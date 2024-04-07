@@ -15,12 +15,14 @@ public class CategoryService : ICategoryService
     public async ValueTask<Category> AddCategoryAsync(Category category) =>
         await this.storageBroker.InsertCategoryAsync(category);
 
-    public IQueryable<Category> RetrieveAllCategoriesAsync() =>
+    public IQueryable<Category> RetrieveAllCategories() =>
         this.storageBroker.SelectAllCategories();
 
+    public async ValueTask<Category> RetrieveCategoryByIdAsync(Guid categoryId) =>
+        await this.storageBroker.SelectCategoryByIdAsync(categoryId);
     public async ValueTask<Category> ModifyCategoryAsync(Category category) =>
         await this.storageBroker.UpdateCategoryAsync(category);
     
-    public async ValueTask<Category> RemoveCategoryAsync(Category category) =>
-        await this.storageBroker.DeleteCategoryAsync(category);
+    public async ValueTask<Category> RemoveCategoryByIdAsync(Guid categoryId) =>
+        await this.storageBroker.DeleteCategoryByIdAsync(categoryId);
 }

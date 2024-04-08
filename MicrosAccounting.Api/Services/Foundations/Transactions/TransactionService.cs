@@ -21,13 +21,22 @@ public class TransactionService : ITransactionService
     public async ValueTask<Transaction?> RetrieveTransactionByIdAsync(Guid transactionId) =>
         await this.storageBroker.SelectTransactionByIdAsync(transactionId);
 
-    public IQueryable<Transaction> RetrieveTransactionByDateAsync(DateTimeOffset transactionDate)
+    public IQueryable<Transaction> RetrieveTransactionByDateAsync(DateTime transactionDate)
     {
         var transactions = this.storageBroker.SelectAllTransactions();
-        var maybeTransaction = transactions.Where(item =>
+        var maybeTransactions = transactions.Where(item =>
             item.CreatedAt == transactionDate);
         
-        return maybeTransaction;
+        return maybeTransactions;
+    }
+
+    public IQueryable<Transaction> RetrieveTransactionBetweenDateTime(DateTime startDate, DateTime endDate)
+    {
+        var transactions = this.storageBroker.SelectAllTransactions();
+        var maybeTransactions = transactions.Where(item =>
+            item.CreatedAt >= startDate && item.CreatedAt <= endDate);
+        
+        return maybeTransactions;
     }
 
     public async ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction) =>

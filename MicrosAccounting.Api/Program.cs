@@ -4,7 +4,6 @@ using MicrosAccounting.Api.Services.Foundations;
 using MicrosAccounting.Api.Services.Foundations.Categories;
 using MicrosAccounting.Api.Services.Foundations.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Users;
-using MicrosAccounting.Api.Services.Transactions;
 
 var builder = WebApplication.CreateBuilder(args);
 

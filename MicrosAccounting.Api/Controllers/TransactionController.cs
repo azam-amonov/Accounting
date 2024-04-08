@@ -1,5 +1,5 @@
 using MicrosAccounting.Api.Models.Transactions;
-using MicrosAccounting.Api.Services.Transactions;
+using MicrosAccounting.Api.Services.Foundations.Transactions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicrosAccounting.Api.Controllers;
@@ -43,7 +43,7 @@ public class TransactionController : ControllerBase
 
     public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
     {
-        Transaction maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
+        Transaction? maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
         
         return Ok(maybeTransaction);
     }

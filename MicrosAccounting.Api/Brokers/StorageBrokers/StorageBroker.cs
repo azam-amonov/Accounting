@@ -33,7 +33,7 @@ public partial class StorageBroker : EFxceptionsContext , IStorageBroker
     private IQueryable<T> SelectAll<T>() where T :class
     {
         var broker = new StorageBroker(this.configuration);
-        return broker.SelectAll<T>();
+        return broker.Set<T>();
     }
 
     private async ValueTask<T?> SelectAsync<T>(params object[] objectIds) where T : class =>

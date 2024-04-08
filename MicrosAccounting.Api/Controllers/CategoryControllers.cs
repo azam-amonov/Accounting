@@ -38,6 +38,23 @@ public class CategoryController : ControllerBase
         
         return Ok(category);
     }
+
+    [HttpGet("{string}")]
+    public async ValueTask<ActionResult<Category>> GetCategoryByName(string categoryName)
+    {
+        Category category = await categoryService.RetrieveCategoryByNameAsync(categoryName);
+        
+        return Ok(category);
+    }
+    
+    [HttpGet("{enum}")]
+    public async ValueTask<ActionResult<Category>> GetCategoryByType(CategoryAccount categoryType)
+    {
+        Category category = await categoryService.RetrieveCategoryByTypeAsync(categoryType);
+        
+        return Ok(category);
+    }
+    
     
     [HttpPut]
     public async ValueTask<ActionResult<Category>> PutCategory(Category category)

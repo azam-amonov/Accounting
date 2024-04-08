@@ -15,14 +15,6 @@ public class CategoryController : ControllerBase
         this.categoryService = categoryService;
     }
 
-    [HttpPost]
-    public async ValueTask<ActionResult<Category>> PostCategory(Category category)
-    {
-        Category addedCategory = await categoryService.AddCategoryAsync(category);
-
-        return Ok(addedCategory);
-    }
-
     [HttpGet]
     public ActionResult<IQueryable<Category>> GetAllCategory()
     {
@@ -62,7 +54,14 @@ public class CategoryController : ControllerBase
         
         return Ok(categories);
     }
-    
+
+    [HttpPost]
+    public async ValueTask<ActionResult<Category>> PostCategory(Category category)
+    {
+        Category addedCategory = await categoryService.AddCategoryAsync(category);
+
+        return Ok(addedCategory);
+    }
     
     [HttpPut]
     public async ValueTask<ActionResult<Category>> PutCategory(Category category)

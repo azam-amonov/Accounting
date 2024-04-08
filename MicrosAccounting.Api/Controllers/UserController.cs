@@ -14,14 +14,7 @@ public class UserController : ControllerBase
     {
         this.userService = userService;
     }
-
-    [HttpPost]
-    public async ValueTask<ActionResult<User>> PostUserAsync(User user)
-    {
-        User addedUser = await this.userService.AddUserAsync(user);
-        return Ok(addedUser);
-    }
-
+    
     [HttpGet]
     public ActionResult<IQueryable<User>> GetAllUsers()
     {
@@ -35,6 +28,13 @@ public class UserController : ControllerBase
         User? user = await this.userService.RetrieveUserById(userId);
         
         return Ok(user);
+    }
+    
+    [HttpPost]
+    public async ValueTask<ActionResult<User>> PostUserAsync(User user)
+    {
+        User addedUser = await this.userService.AddUserAsync(user);
+        return Ok(addedUser);
     }
 
     [HttpPut]

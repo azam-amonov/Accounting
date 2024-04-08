@@ -46,7 +46,15 @@ public class CategoryController : ControllerBase
         
         return Ok(category);
     }
-    
+
+    [HttpGet("names")]
+    public ActionResult<IEnumerable<Category>> GetCategoryByNames([FromQuery] IEnumerable<string> categoryNames)
+    {
+        var categories = categoryService.RetrieveCategoriesByName(categoryNames);
+        
+        return Ok(categories);
+    }
+
     [HttpGet("type/{categoryType}")]
     public ActionResult<IQueryable<Category>> GetCategoryByType(CategoryAccount categoryType)
     {

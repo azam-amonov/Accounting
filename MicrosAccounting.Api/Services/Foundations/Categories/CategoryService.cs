@@ -31,6 +31,16 @@ public class CategoryService : ICategoryService
         return maybeCategory;
     }
 
+    public async ValueTask<IEnumerable<Category>> RetrieveCategoriesByName(IEnumerable<string> categoryNames)
+    {
+        var categories = this.storageBroker.SelectAllCategories();
+        var lowerCategoriesName = categoryNames.Select(name => name.ToLower());
+        var maybeCategories = await categories.Where(item =>
+            lowerCategoriesName.Contains(item.Name.ToLower())).ToListAsync();
+        
+        return maybeCategories;
+    }
+    
     public IQueryable<Category> RetrieveCategoriesByTypeAsync(CategoryAccount categoryType)
     {
         var categories =  this.storageBroker.SelectAllCategories();

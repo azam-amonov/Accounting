@@ -8,6 +8,7 @@ public interface ICategoryService
     IQueryable<Category> RetrieveAllCategories();
     ValueTask<Category> RetrieveCategoryByIdAsync(Guid categoryId);
     ValueTask<Category?> RetrieveCategoryByNameAsync(string categoryName);
+    ValueTask<IEnumerable<Category>> RetrieveCategoriesByName(IEnumerable<string> categoryNames);
     IQueryable<Category> RetrieveCategoriesByTypeAsync(CategoryAccount categoryType);
     ValueTask<Category> ModifyCategoryAsync(Category category);
     ValueTask<Category> RemoveCategoryByIdAsync(Guid categoryId);

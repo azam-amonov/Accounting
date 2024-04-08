@@ -8,7 +8,7 @@ public partial class StorageBroker
         InsertTransactionAsync(Transaction transaction) =>
         await this.InsertAsync(transaction);
 
-    public IQueryable<Transaction> SelectTransactions() =>
+    public IQueryable<Transaction> SelectAllTransactions() =>
         this.SelectAll<Transaction>();
 
     public async ValueTask<Transaction?> 

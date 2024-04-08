@@ -1,5 +1,5 @@
+using System.Text.Json.Serialization;
 using MicrosAccounting.Api.Models.Transactions;
-using Newtonsoft.Json;
 
 namespace MicrosAccounting.Api.Models.Categories;
 

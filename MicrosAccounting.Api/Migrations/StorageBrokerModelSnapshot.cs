@@ -28,6 +28,9 @@ namespace MicrosAccounting.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Accounting")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -35,6 +38,50 @@ namespace MicrosAccounting.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("dc2ab154-aa13-481f-8112-87600cca4479"),
+                            Accounting = 0,
+                            Name = "Salary"
+                        },
+                        new
+                        {
+                            Id = new Guid("3f4d326a-e03a-47aa-ae85-0daf6b87d04d"),
+                            Accounting = 0,
+                            Name = "Other Income"
+                        },
+                        new
+                        {
+                            Id = new Guid("28014daa-db65-430d-a746-59f722c82a1c"),
+                            Accounting = 1,
+                            Name = "Food"
+                        },
+                        new
+                        {
+                            Id = new Guid("5217136e-25c8-428e-9996-591587d824e4"),
+                            Accounting = 1,
+                            Name = "Transport"
+                        },
+                        new
+                        {
+                            Id = new Guid("6398fa09-91b1-485f-b701-b8363f54c5b3"),
+                            Accounting = 1,
+                            Name = "Mobile Connection"
+                        },
+                        new
+                        {
+                            Id = new Guid("f6424788-1f1b-4271-ad2d-12039a0bf202"),
+                            Accounting = 1,
+                            Name = "Internet"
+                        },
+                        new
+                        {
+                            Id = new Guid("90feb77d-fdd6-4bfe-afa9-257c43a8159e"),
+                            Accounting = 1,
+                            Name = "Entertainment"
+                        });
                 });
 
             modelBuilder.Entity("MicrosAccounting.Api.Models.Transactions.Transaction", b =>

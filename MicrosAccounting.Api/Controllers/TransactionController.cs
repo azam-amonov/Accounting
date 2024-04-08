@@ -14,23 +14,6 @@ public class TransactionController : ControllerBase
     {
         this.transactionService = transactionService;
     }
-
-    [HttpGet]
-    public ActionResult<IQueryable<Transaction>> GetAllTransactions()
-    {
-        IQueryable<Transaction> retrievedTransactions = transactionService.RetrieveAllTransactions();
-        
-        return Ok(retrievedTransactions);
-    }
-
-    [HttpGet( "{transactionId}")]
-
-    public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
-    {
-        Transaction maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
-        
-        return Ok(maybeTransaction);
-    }
     
     [HttpPost]
     public async ValueTask<ActionResult<Transaction>> PostTransaction(Transaction transaction)
@@ -39,15 +22,30 @@ public class TransactionController : ControllerBase
         
         return Ok(addedTransaction);
     }
-
- 
     
+    [HttpGet]
+    public ActionResult<IQueryable<Transaction>> GetAllTransactions()
+    {
+        IQueryable<Transaction> retrievedTransactions = transactionService.RetrieveAllTransactions();
+        
+        return Ok(retrievedTransactions);
+    }
+
     [HttpPut]
     public async ValueTask<ActionResult<Transaction>> PutTransaction(Transaction transaction)
     {
         Transaction putTransaction = await transactionService.ModifyTransactionAsync(transaction);
         
         return Ok(putTransaction);
+    }
+    
+    [HttpGet( "{transactionId}")]
+
+    public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
+    {
+        Transaction maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
+        
+        return Ok(maybeTransaction);
     }
     
     [HttpDelete( "{transactionId}")]

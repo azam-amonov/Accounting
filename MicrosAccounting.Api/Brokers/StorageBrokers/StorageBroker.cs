@@ -1,5 +1,7 @@
 using EFxceptions;
 using MicrosAccounting.Api.Models.Categories;
+using MicrosAccounting.Api.Models.Transactions;
+using MicrosAccounting.Api.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicrosAccounting.Api.Brokers.StorageBrokers;
@@ -60,6 +62,8 @@ public partial class StorageBroker : EFxceptionsContext, IStorageBroker
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        SeedUser(modelBuilder.Entity<User>());
         SeedCategory(modelBuilder.Entity<Category>());
+        SeedTransaction(modelBuilder.Entity<Transaction>());
     }
 }

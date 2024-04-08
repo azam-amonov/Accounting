@@ -1,6 +1,5 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Models.Transactions;
-using Microsoft.EntityFrameworkCore;
 
 namespace MicrosAccounting.Api.Services.Foundations.Transactions;
 

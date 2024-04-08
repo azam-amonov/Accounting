@@ -8,5 +8,4 @@ public class Transaction
     public DateTimeOffset CreatedAt { get; set; }
     public string? Comment { get; set; }
     public decimal Amount { get; set; }
-    public Account AccountingType {get; set; }
 }

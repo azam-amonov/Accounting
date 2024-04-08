@@ -1,4 +1,5 @@
 using EFxceptions;
+using MicrosAccounting.Api.Models.Categories;
 using Microsoft.EntityFrameworkCore;
 
 namespace MicrosAccounting.Api.Brokers.StorageBrokers;
@@ -11,14 +12,6 @@ public partial class StorageBroker : EFxceptionsContext, IStorageBroker
     {
         this.configuration = configuration;
         this.Database.Migrate();
-    }
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var connectionString = this.configuration.
-            GetConnectionString("DefaultConnection");
-
-        optionsBuilder.UseNpgsql(connectionString);
     }
 
     private async ValueTask<T> InsertAsync<T>(T @object)
@@ -55,5 +48,18 @@ public partial class StorageBroker : EFxceptionsContext, IStorageBroker
         await broker.SaveChangesAsync();
         
         return @object;
+    }
+    
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var connectionString = this.configuration.
+            GetConnectionString("DefaultConnection");
+
+        optionsBuilder.UseNpgsql(connectionString);
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        SeedCategory(modelBuilder.Entity<Category>());
     }
 }

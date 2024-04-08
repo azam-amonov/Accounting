@@ -57,8 +57,16 @@ public class TransactionController : ControllerBase
 
         return Ok(transactions);
     }
-    
-    
+
+    [HttpGet("between-dates")]
+
+    public ActionResult<IQueryable<Transaction>> GetTransactionByBetweenDates(DateTime startDate, DateTime endDate)
+    {
+        var transactions = 
+            this.transactionService.RetrieveTransactionBetweenDateTime(startDate, endDate);
+        
+        return Ok(transactions);
+    }
 
     [HttpDelete( "{transactionId}")]
     

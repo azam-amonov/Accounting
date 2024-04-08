@@ -26,18 +26,18 @@ public class CategoryService : ICategoryService
     {
         var categories =  this.storageBroker.SelectAllCategories();
         var maybeCategory = await categories.FirstOrDefaultAsync(item =>
-            item.Name.Equals(categoryName, StringComparison.OrdinalIgnoreCase));
+            string.Equals(item.Name.ToLower(), categoryName.ToLower()));
 
         return maybeCategory;
     }
 
-    public async ValueTask<Category> RetrieveCategoryByTypeAsync(CategoryAccount categoryType)
+    public IQueryable<Category> RetrieveCategoriesByTypeAsync(CategoryAccount categoryType)
     {
         var categories =  this.storageBroker.SelectAllCategories();
-        var maybeCategory = await categories.FirstOrDefaultAsync(item =>
+        var maybeCategories = categories.Where(item =>
             item.Accounting == categoryType);
         
-        return maybeCategory;
+        return maybeCategories;
     }
 
     public async ValueTask<Category> ModifyCategoryAsync(Category category) =>

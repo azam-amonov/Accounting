@@ -31,7 +31,7 @@ public class CategoryController : ControllerBase
         return Ok(categories);
     }
     
-    [HttpGet("{guid}")]
+    [HttpGet("id/{categoryId}")]
     public async ValueTask<ActionResult<Category>> GetCategoryById(Guid categoryId)
     {
         Category category = await categoryService.RetrieveCategoryByIdAsync(categoryId);
@@ -39,20 +39,20 @@ public class CategoryController : ControllerBase
         return Ok(category);
     }
 
-    [HttpGet("{string}")]
+    [HttpGet("name/{categoryName}")]
     public async ValueTask<ActionResult<Category>> GetCategoryByName(string categoryName)
     {
-        Category category = await categoryService.RetrieveCategoryByNameAsync(categoryName);
+        Category? category = await categoryService.RetrieveCategoryByNameAsync(categoryName);
         
         return Ok(category);
     }
     
-    [HttpGet("{enum}")]
-    public async ValueTask<ActionResult<Category>> GetCategoryByType(CategoryAccount categoryType)
+    [HttpGet("type/{categoryType}")]
+    public ActionResult<IQueryable<Category>> GetCategoryByType(CategoryAccount categoryType)
     {
-        Category category = await categoryService.RetrieveCategoryByTypeAsync(categoryType);
+        IQueryable<Category> categories= categoryService.RetrieveCategoriesByTypeAsync(categoryType);
         
-        return Ok(category);
+        return Ok(categories);
     }
     
     
@@ -64,7 +64,7 @@ public class CategoryController : ControllerBase
         return Ok(updateCategory);
     }
     
-    [HttpDelete("{guid}")]
+    [HttpDelete("{categoryId}")]
     
     public async ValueTask<ActionResult<Category>> DeleteByIdCategory(Guid categoryId)
     {

@@ -1,6 +1,6 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Models.Transactions;
-using MicrosAccounting.Api.Services.Transactions;
+using Microsoft.EntityFrameworkCore;
 
 namespace MicrosAccounting.Api.Services.Foundations.Transactions;
 
@@ -17,10 +17,20 @@ public class TransactionService : ITransactionService
         await this.storageBroker.InsertTransactionAsync(transaction);
 
     public IQueryable<Transaction> RetrieveAllTransactions() =>
-        this.storageBroker.SelectTransactions();
+        this.storageBroker.SelectAllTransactions();
 
-    public async ValueTask<Transaction> RetrieveTransactionByIdAsync(Guid transactionId) =>
+    public async ValueTask<Transaction?> RetrieveTransactionByIdAsync(Guid transactionId) =>
         await this.storageBroker.SelectTransactionByIdAsync(transactionId);
+
+    public IQueryable<Transaction> RetrieveTransactionByDateAsync(DateTimeOffset transactionDate)
+    {
+        var transactions = this.storageBroker.SelectAllTransactions();
+        var maybeTransaction = transactions.Where(item =>
+            item.CreatedAt == transactionDate);
+        
+        return maybeTransaction;
+    }
+
     public async ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction) =>
         await this.storageBroker.UpdateTransactionAsync(transaction);
 

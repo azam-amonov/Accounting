@@ -14,20 +14,20 @@ public class TransactionController : ControllerBase
     {
         this.transactionService = transactionService;
     }
-    
+
     [HttpPost]
     public async ValueTask<ActionResult<Transaction>> PostTransaction(Transaction transaction)
     {
         Transaction addedTransaction = await this.transactionService.AddTransactionAsync(transaction);
-        
+
         return Ok(addedTransaction);
     }
-    
+
     [HttpGet]
     public ActionResult<IQueryable<Transaction>> GetAllTransactions()
     {
         IQueryable<Transaction> retrievedTransactions = transactionService.RetrieveAllTransactions();
-        
+
         return Ok(retrievedTransactions);
     }
 
@@ -35,19 +35,31 @@ public class TransactionController : ControllerBase
     public async ValueTask<ActionResult<Transaction>> PutTransaction(Transaction transaction)
     {
         Transaction putTransaction = await transactionService.ModifyTransactionAsync(transaction);
-        
+
         return Ok(putTransaction);
     }
-    
-    [HttpGet( "{transactionId}")]
+
+    [HttpGet("{transactionId}")]
 
     public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
     {
         Transaction? maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
-        
+
         return Ok(maybeTransaction);
     }
+
+    [HttpGet("dateTime/{transactionDateTime}")]
+
+    public ActionResult<IQueryable<Transaction>> GetTransactionByDateTime(DateTime transactionDateTime)
+    {
+        var transactions = 
+            this.transactionService.RetrieveTransactionByDateAsync(transactionDateTime);
+
+        return Ok(transactions);
+    }
     
+    
+
     [HttpDelete( "{transactionId}")]
     
     public async ValueTask<ActionResult<Transaction>> DeleteTransactionById(Guid transactionId)

@@ -25,7 +25,7 @@ public class TransactionService : ITransactionService
     {
         var transactions = this.storageBroker.SelectAllTransactions();
         var maybeTransactions = transactions.Where(item =>
-            item.CreatedAt == transactionDate);
+            item.CreatedAt.Date == transactionDate.Date);
         
         return maybeTransactions;
     }
@@ -34,7 +34,7 @@ public class TransactionService : ITransactionService
     {
         var transactions = this.storageBroker.SelectAllTransactions();
         var maybeTransactions = transactions.Where(item =>
-            item.CreatedAt >= startDate && item.CreatedAt <= endDate);
+            item.CreatedAt.Date >= startDate && item.CreatedAt.Date <= endDate);
         
         return maybeTransactions;
     }

@@ -34,7 +34,8 @@ public class TransactionService : ITransactionService
     {
         var transactions = this.storageBroker.SelectAllTransactions();
         var maybeTransactions = transactions.Where(item =>
-            item.CreatedAt.Date >= startDate && item.CreatedAt.Date <= endDate);
+            item.CreatedAt.Date >= startDate && item.CreatedAt.Date <= endDate)
+            .OrderBy(item => item.CreatedAt);
         
         return maybeTransactions;
     }

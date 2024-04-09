@@ -62,6 +62,12 @@ public partial class StorageBroker : EFxceptionsContext, IStorageBroker
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // configurations
+        AddUserConfiguration(modelBuilder);
+        AddCategoryConfiguration(modelBuilder);
+        AddTransactionsConfiguration(modelBuilder);
+        
+        // seed data
         SeedUser(modelBuilder.Entity<User>());
         SeedCategory(modelBuilder.Entity<Category>());
         SeedTransaction(modelBuilder.Entity<Transaction>());

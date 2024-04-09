@@ -13,7 +13,7 @@ public class Transaction
     public string? Comment { get; set; }
     public decimal Amount { get; set; }
     [JsonIgnore]
-    public virtual Category Category { get; set; }
+    public virtual Category? Category { get; set; }
     [JsonIgnore]
-    public virtual User User { get; set; }
+    public virtual User? User { get; set; }
 }

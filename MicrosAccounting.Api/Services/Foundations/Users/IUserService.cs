@@ -6,9 +6,8 @@ public interface IUserService
 {
     ValueTask<User> AddUserAsync(User user);
     IQueryable<User> RetrieveAllUsers();
-
     ValueTask<User?> RetrieveUserById(Guid userId);
-    
+    ValueTask<User> RetrieveUserByEmailAsync(string email);
     ValueTask<User> ModifyUserAsync(User user);
     ValueTask<User> RemoveUserByIdAsync(Guid userId);
 }

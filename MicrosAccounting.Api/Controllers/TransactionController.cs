@@ -1,3 +1,4 @@
+using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Transactions;
 using Microsoft.AspNetCore.Mvc;
@@ -14,21 +15,21 @@ public class TransactionController : ControllerBase
     {
         this.transactionService = transactionService;
     }
-
-    [HttpPost]
-    public async ValueTask<ActionResult<Transaction>> PostTransaction(Transaction transaction)
-    {
-        Transaction addedTransaction = await this.transactionService.AddTransactionAsync(transaction);
-
-        return Ok(addedTransaction);
-    }
-
+    
     [HttpGet]
     public ActionResult<IQueryable<Transaction>> GetAllTransactions()
     {
         IQueryable<Transaction> retrievedTransactions = transactionService.RetrieveAllTransactions();
 
         return Ok(retrievedTransactions);
+    }
+    
+    [HttpPost]
+    public async ValueTask<ActionResult<Transaction>> PostTransaction(Transaction transaction)
+    {
+        Transaction addedTransaction = await this.transactionService.AddTransactionAsync(transaction);
+
+        return Ok(addedTransaction);
     }
 
     [HttpPut]
@@ -68,11 +69,31 @@ public class TransactionController : ControllerBase
         return Ok(transactions);
     }
 
+    [HttpGet("type/{categoryType}")]
+
+    public ActionResult<IQueryable<Transaction>> GetTransactionByType(CategoryAccount categoryType)
+    {
+        var transactions = 
+            this.transactionService.RetrieveTransactionByCategoryType(categoryType);
+        
+        return Ok(transactions);
+    }
+
+    [HttpGet("names")]
+
+    public ActionResult<IQueryable<Transaction>> GetTransactionByNames([FromQuery] IEnumerable<string> names)
+    {
+        var transactions = this.transactionService.RetrieveTransactionByCategoryName(names);
+        
+        return Ok(transactions);
+    }
+
     [HttpDelete( "{transactionId}")]
     
     public async ValueTask<ActionResult<Transaction>> DeleteTransactionById(Guid transactionId)
     {
-        Transaction deletedTransaction = await transactionService.RemoveTransactionByIdAsync(transactionId);
+        Transaction deletedTransaction = 
+            await transactionService.RemoveTransactionByIdAsync(transactionId);
     
         return Ok(deletedTransaction);
     }

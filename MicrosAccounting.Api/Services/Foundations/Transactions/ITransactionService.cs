@@ -1,3 +1,4 @@
+using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 
 namespace MicrosAccounting.Api.Services.Foundations.Transactions;
@@ -9,6 +10,8 @@ public interface ITransactionService
     ValueTask<Transaction?> RetrieveTransactionByIdAsync(Guid transactionId);
     IQueryable<Transaction> RetrieveTransactionByDateAsync(DateTime transactionDate);
     IQueryable<Transaction> RetrieveTransactionBetweenDateTime(DateTime startDate, DateTime endDate);
+    IQueryable<Transaction> RetrieveTransactionByCategoryType(CategoryAccount accountingType);
+    IQueryable<Transaction> RetrieveTransactionByCategoryName(IEnumerable<string> categoryName);
     ValueTask<Transaction> ModifyTransactionAsync(Transaction transaction);
     ValueTask<Transaction> RemoveTransactionByIdAsync(Guid transactionId);
 }

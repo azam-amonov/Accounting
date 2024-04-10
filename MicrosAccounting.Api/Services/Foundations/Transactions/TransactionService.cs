@@ -1,4 +1,5 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
+using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 
 namespace MicrosAccounting.Api.Services.Foundations.Transactions;
@@ -37,6 +38,24 @@ public class TransactionService : ITransactionService
             item.CreatedAt.Date >= startDate && item.CreatedAt.Date <= endDate)
             .OrderBy(item => item.CreatedAt);
         
+        return maybeTransactions;
+    }
+
+    public IQueryable<Transaction> RetrieveTransactionByCategoryType(CategoryAccount accountingType)
+    {
+        var transactions = this.storageBroker.SelectAllTransactions()
+            .Where(item => item.Category.Accounting == accountingType);
+
+        return transactions;
+    }
+
+    public IQueryable<Transaction> RetrieveTransactionByCategoryName(IEnumerable<string> categoryName)
+    {
+        var transactions = this.storageBroker.SelectAllTransactions();
+        var selectNames = categoryName.Select(time => time.ToLower());
+        var maybeTransactions = transactions.Where(item => 
+            selectNames.Contains(item.Category.Name.ToLower()));
+
         return maybeTransactions;
     }
 

@@ -1,5 +1,6 @@
 using MicrosAccounting.Api.Models.Users;
 using MicrosAccounting.Api.Services.Foundations.Users;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicrosAccounting.Api.Controllers;
@@ -37,6 +38,7 @@ public class UserController : ControllerBase
         return Ok(addedUser);
     }
 
+    [Authorize]
     [HttpPut]
     public async ValueTask<ActionResult<User>> PutUserAsync(User user)
     {
@@ -44,6 +46,7 @@ public class UserController : ControllerBase
         return Ok(modifiedUser);
     }
 
+    [Authorize]
     [HttpDelete("{userId}")]
     public async ValueTask<ActionResult<User>> DeleteUserAsyncById(Guid userId)
     {

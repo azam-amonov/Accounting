@@ -1,10 +1,12 @@
 using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Transactions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicrosAccounting.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/[controller]")]
 public class TransactionController : ControllerBase

@@ -8,6 +8,7 @@ public interface IUserService
     IQueryable<User> RetrieveAllUsers();
     ValueTask<User?> RetrieveUserById(Guid userId);
     ValueTask<User> RetrieveUserByEmailAsync(string email);
+    ValueTask<string> SignUpAsync(string email, string password);
     ValueTask<User> ModifyUserAsync(User user);
     ValueTask<User> RemoveUserByIdAsync(Guid userId);
 }

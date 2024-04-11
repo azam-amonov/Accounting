@@ -1,4 +1,5 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
+using MicrosAccounting.Api.Brokers.Tokens;
 using MicrosAccounting.Api.Models.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,10 +8,12 @@ namespace MicrosAccounting.Api.Services.Foundations.Users;
 public class UserService: IUserService
 {
     private readonly IStorageBroker storageBroker;
+    private readonly ITokenBroker tokenBroker;
 
-    public UserService(IStorageBroker storageBroker)
+    public UserService(IStorageBroker storageBroker, ITokenBroker tokenBroker)
     {
         this.storageBroker = storageBroker;
+        this.tokenBroker = tokenBroker;
     }
 
     public ValueTask<User> AddUserAsync(User user) =>
@@ -29,6 +32,17 @@ public class UserService: IUserService
             user.Email == email);
 
         return maybeUser;
+    }
+
+    public async ValueTask<string> SignUpAsync(string email, string password)
+    {
+        var user = await RetrieveUserByEmailAsync(email);
+        if (user is null || user.Password != password)
+            return "Invalid email or password!";
+
+        var token = this.tokenBroker.GenerateJwt(email, password);
+
+        return token;
     }
 
     public ValueTask<User> ModifyUserAsync(User user) =>

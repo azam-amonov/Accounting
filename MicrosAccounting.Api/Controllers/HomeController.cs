@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace MicrosAccounting.Api.Controllers;
-
 [ApiController]
 [Route("api/[controller]")]
 public class HomeController : ControllerBase
@@ -49,10 +48,10 @@ public class HomeController : ControllerBase
         return Ok(token);
     }
     
-    // [Authorize]
-        [HttpGet]
-        public IActionResult Get() 
-        {
-            return Ok("Hello World");
-        }
+    [Authorize] 
+    [HttpGet]
+    public IActionResult Get() 
+    { 
+        return Ok("Hello World"); 
+    }
 }

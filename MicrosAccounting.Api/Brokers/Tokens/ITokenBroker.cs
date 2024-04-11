@@ -4,6 +4,5 @@ namespace MicrosAccounting.Api.Brokers.Tokens;
 
 public interface ITokenBroker
 {
-    string GenerateJwt(User user);
-    string HashToken(string password);
+    string GenerateJwt(string email, string password);
 }

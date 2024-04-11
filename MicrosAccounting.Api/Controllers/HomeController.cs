@@ -3,7 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using MicrosAccounting.Api.Services.Foundations.Users;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 

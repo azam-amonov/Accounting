@@ -1,5 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using MicrosAccounting.Api.Models.Tokens;
 using MicrosAccounting.Api.Models.Users;
@@ -42,8 +43,12 @@ public class TokenBroker : ITokenBroker
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    public string Token(string password)
+    public string HashToken(string password)
     {
-        throw new NotImplementedException();
+        using (SHA256 sha256 = SHA256.Create())
+        {
+            byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
+        }
     }
 }

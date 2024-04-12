@@ -23,19 +23,19 @@ public class UserController : ControllerBase
         return Ok(retrievedUsers);
     }
 
+    [HttpPost]
+    public async ValueTask<ActionResult<User>> PostUserAsync(User user)
+    {
+        User addedUser = await this.userService.AddUserAsync(user);
+        return Ok(addedUser);
+    }
+    
     [HttpGet("{userId}")]
     public async ValueTask<ActionResult<User>> GetUserById(Guid userId)
     {
         User? user = await this.userService.RetrieveUserById(userId);
         
         return Ok(user);
-    }
-    
-    [HttpPost]
-    public async ValueTask<ActionResult<User>> PostUserAsync(User user)
-    {
-        User addedUser = await this.userService.AddUserAsync(user);
-        return Ok(addedUser);
     }
 
     [Authorize]

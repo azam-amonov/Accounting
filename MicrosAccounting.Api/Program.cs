@@ -6,6 +6,7 @@ using MicrosAccounting.Api.Services.Foundations;
 using MicrosAccounting.Api.Services.Foundations.Categories;
 using MicrosAccounting.Api.Services.Foundations.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Users;
+using MicrosAccounting.Api.Services.Orchestration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -85,6 +86,7 @@ builder.Services.AddTransient<ITokenBroker, TokenBroker>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
+builder.Services.AddTransient<ITransactionResultService, TransactionResultService>();
 
 var app = builder.Build();
 

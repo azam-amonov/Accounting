@@ -8,6 +8,6 @@ public interface ITransactionResultService
     IQueryable<TransactionResult> RetrieveAllTransactionResult();
     IQueryable<TransactionResult> RetrieveTransactionResultByAccounting(CategoryAccount category);
     IQueryable<TransactionResult> RetrieveTransactionResultByName(IEnumerable<string> name);
-    IQueryable<TransactionResult> RetrieveTransactionResultByDate(DateOnly date);
-    IQueryable<TransactionResult> RetrieveTransactionResultBetweenDate(DateOnly startDate, DateOnly endDate);
+    IQueryable<TransactionResult> RetrieveTransactionResultByDate(DateTime date);
+    IQueryable<TransactionResult> RetrieveTransactionResultBetweenDate(DateTime startDate, DateTime endDate);
 }

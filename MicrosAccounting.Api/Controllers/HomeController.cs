@@ -17,7 +17,7 @@ public class HomeController : ControllerBase
     [HttpPost]
     public async ValueTask<ActionResult<string>> Login(string email, string password)
     {
-       var token = this.userService.SignUpAsync(email, password);
+       var token = await this.userService.SignUpAsync(email, password);
 
         return Ok(token);
     }

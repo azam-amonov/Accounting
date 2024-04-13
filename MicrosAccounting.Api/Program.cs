@@ -65,6 +65,16 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(cBuilder =>
+    {
+        cBuilder.AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 // lifecycle
 // brokers
 builder.Services.AddTransient<IStorageBroker, StorageBroker>();
@@ -77,13 +87,17 @@ builder.Services.AddTransient<ICategoryService, CategoryService>();
 builder.Services.AddTransient<ITransactionService, TransactionService>();
 
 var app = builder.Build();
+
+app.UseCors();
+app.UseHttpsRedirection();
+
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
-app.UseAuthentication();
 app.UseAuthorization();
+app.UseAuthentication();
 
+app.UseRouting();
 app.MapControllers();
 
 app.Run();

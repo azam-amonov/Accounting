@@ -1,22 +1,22 @@
+using MicrosAccounting.Api.Brokers.StorageBrokers;
 using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Orchestration;
-using MicrosAccounting.Api.Services.Foundations.Transactions;
 
 namespace MicrosAccounting.Api.Services.Orchestration;
 
 public class TransactionResultService : ITransactionResultService
 {
-    private readonly ITransactionService transactionService;
+    private readonly IStorageBroker storageBroker;
 
     public TransactionResultService(
-        ITransactionService transactionService)
+        IStorageBroker storageBroker)
     {
-        this.transactionService = transactionService;
+        this.storageBroker = storageBroker;
     }
 
     public IQueryable<TransactionResult> RetrieveAllTransactionResult()
     {
-        var transactions = transactionService.RetrieveAllTransactions()
+        var transactions = storageBroker.SelectAllTransactions()
             .Select(transaction => new TransactionResult
             {
                 Transaction = transaction,
@@ -28,7 +28,7 @@ public class TransactionResultService : ITransactionResultService
 
     public IQueryable<TransactionResult> RetrieveTransactionResultByAccounting(CategoryAccount categoryAccount)
     {
-        var transactionResult = transactionService.RetrieveAllTransactions()
+        var transactionResult = storageBroker.SelectAllTransactions()
             .Where(transaction => transaction.Category.Accounting == categoryAccount)
             .Select(transaction => new TransactionResult
             {
@@ -41,7 +41,7 @@ public class TransactionResultService : ITransactionResultService
 
     public IQueryable<TransactionResult> RetrieveTransactionResultByDate(DateTime date)
     {
-        var transactionResult = transactionService.RetrieveAllTransactions()
+        var transactionResult = storageBroker.SelectAllTransactions()
             .Where(transaction => transaction.CreatedAt.Date == date.Date)
             .Select(transaction => new TransactionResult
             {
@@ -55,7 +55,7 @@ public class TransactionResultService : ITransactionResultService
     {
         var enteredNames = names.Select(name => name.ToLower());
         
-        var maybeTransactionsResult = transactionService.RetrieveAllTransactions()
+        var maybeTransactionsResult = storageBroker.SelectAllTransactions()
                 .Where(transaction => enteredNames.Contains(transaction.Category!.Name.ToLower()))
                 .Select(transaction => new TransactionResult
                 {
@@ -69,7 +69,7 @@ public class TransactionResultService : ITransactionResultService
     public IQueryable<TransactionResult> 
         RetrieveTransactionResultBetweenDate(DateTime startDate, DateTime endDate)
     {
-        var transactionResult = transactionService.RetrieveAllTransactions()
+        var transactionResult = storageBroker.SelectAllTransactions()
             .Where(transaction => transaction.CreatedAt.Date >= startDate 
                                   && transaction.CreatedAt.Date <= endDate)
             .Select(transaction => new TransactionResult

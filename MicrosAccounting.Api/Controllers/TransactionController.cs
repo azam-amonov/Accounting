@@ -1,4 +1,3 @@
-using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 using MicrosAccounting.Api.Services.Foundations.Transactions;
 using Microsoft.AspNetCore.Authorization;
@@ -29,7 +28,8 @@ public class TransactionController : ControllerBase
     [HttpPost]
     public async ValueTask<ActionResult<Transaction>> PostTransaction(Transaction transaction)
     {
-        Transaction addedTransaction = await this.transactionService.AddTransactionAsync(transaction);
+        Transaction addedTransaction = 
+            await this.transactionService.AddTransactionAsync(transaction);
 
         return Ok(addedTransaction);
     }
@@ -37,7 +37,8 @@ public class TransactionController : ControllerBase
     [HttpPut]
     public async ValueTask<ActionResult<Transaction>> PutTransaction(Transaction transaction)
     {
-        Transaction putTransaction = await transactionService.ModifyTransactionAsync(transaction);
+        Transaction putTransaction = 
+            await transactionService.ModifyTransactionAsync(transaction);
 
         return Ok(putTransaction);
     }
@@ -46,48 +47,10 @@ public class TransactionController : ControllerBase
 
     public async ValueTask<ActionResult<Transaction>> GetTransactionById(Guid transactionId)
     {
-        Transaction? maybeTransaction = await transactionService.RetrieveTransactionByIdAsync(transactionId);
+        Transaction? maybeTransaction = 
+            await transactionService.RetrieveTransactionByIdAsync(transactionId);
 
         return Ok(maybeTransaction);
-    }
-
-    [HttpGet("dateTime/{transactionDateTime}")]
-
-    public ActionResult<IQueryable<Transaction>> GetTransactionByDateTime(DateTime transactionDateTime)
-    {
-        var transactions = 
-            this.transactionService.RetrieveTransactionByDateAsync(transactionDateTime);
-
-        return Ok(transactions);
-    }
-
-    [HttpGet("between-dates")]
-
-    public ActionResult<IQueryable<Transaction>> GetTransactionByBetweenDates(DateTime startDate, DateTime endDate)
-    {
-        var transactions = 
-            this.transactionService.RetrieveTransactionBetweenDateTime(startDate, endDate);
-        
-        return Ok(transactions);
-    }
-
-    [HttpGet("type/{categoryType}")]
-
-    public ActionResult<IQueryable<Transaction>> GetTransactionByType(CategoryAccount categoryType)
-    {
-        var transactions = 
-            this.transactionService.RetrieveTransactionByCategoryType(categoryType);
-        
-        return Ok(transactions);
-    }
-
-    [HttpGet("names")]
-
-    public ActionResult<IQueryable<Transaction>> GetTransactionByNames([FromQuery] IEnumerable<string> names)
-    {
-        var transactions = this.transactionService.RetrieveTransactionByCategoryName(names);
-        
-        return Ok(transactions);
     }
 
     [HttpDelete( "{transactionId}")]

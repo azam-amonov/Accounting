@@ -1,5 +1,5 @@
 using MicrosAccounting.Api.Models.Categories;
-using MicrosAccounting.Api.Services.Foundations;
+using MicrosAccounting.Api.Services.Foundations.Categories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,31 +32,7 @@ public class CategoryController : ControllerBase
         
         return Ok(category);
     }
-
-    [HttpGet("name/{categoryName}")]
-    public async ValueTask<ActionResult<Category>> GetCategoryByName(string categoryName)
-    {
-        Category? category = await categoryService.RetrieveCategoryByNameAsync(categoryName);
-        
-        return Ok(category);
-    }
-
-    [HttpGet("names")]
-    public ActionResult<IEnumerable<Category>> GetCategoryByNames([FromQuery] IEnumerable<string> categoryNames)
-    {
-        var categories = categoryService.RetrieveCategoriesByName(categoryNames);
-        
-        return Ok(categories);
-    }
-
-    [HttpGet("type/{categoryType}")]
-    public ActionResult<IQueryable<Category>> GetCategoryByType(CategoryAccount categoryType)
-    {
-        IQueryable<Category> categories= categoryService.RetrieveCategoriesByTypeAsync(categoryType);
-        
-        return Ok(categories);
-    }
-
+    
     [HttpPost]
     public async ValueTask<ActionResult<Category>> PostCategory(Category category)
     {

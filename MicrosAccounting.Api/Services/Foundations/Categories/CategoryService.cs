@@ -22,34 +22,6 @@ public class CategoryService : ICategoryService
     public async ValueTask<Category> RetrieveCategoryByIdAsync(Guid categoryId) =>
         await this.storageBroker.SelectCategoryByIdAsync(categoryId);
 
-    public async ValueTask<Category?> RetrieveCategoryByNameAsync(string categoryName)
-    {
-        var categories =  this.storageBroker.SelectAllCategories();
-        var maybeCategory = await categories.FirstOrDefaultAsync(item =>
-            string.Equals(item.Name.ToLower(), categoryName.ToLower()));
-
-        return maybeCategory;
-    }
-
-    public async ValueTask<IEnumerable<Category>> RetrieveCategoriesByName(IEnumerable<string> categoriesName)
-    {
-        var categories = this.storageBroker.SelectAllCategories();
-        var lowerCategoriesName = categoriesName.Select(name => name.ToLower());
-        var maybeCategories = await categories.Where(item =>
-            lowerCategoriesName.Contains(item.Name.ToLower())).ToListAsync();
-        
-        return maybeCategories;
-    }
-    
-    public IQueryable<Category> RetrieveCategoriesByTypeAsync(CategoryAccount categoryType)
-    {
-        var categories =  this.storageBroker.SelectAllCategories();
-        var maybeCategories = categories.Where(item =>
-            item.Accounting == categoryType);
-        
-        return maybeCategories;
-    }
-
     public async ValueTask<Category> ModifyCategoryAsync(Category category) =>
         await this.storageBroker.UpdateCategoryAsync(category);
     

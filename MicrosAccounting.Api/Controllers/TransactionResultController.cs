@@ -21,6 +21,7 @@ public class TransactionResultController : ControllerBase
     public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResults()
     {
         var result = transactionResultService.RetrieveAllTransactionResult();
+        
         return Ok(result);
     }
 
@@ -28,6 +29,7 @@ public class TransactionResultController : ControllerBase
     public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResultsByType(CategoryAccount type)
     {
         var result = transactionResultService.RetrieveTransactionResultByAccounting(type);
+        
         return Ok(result);
     }
 
@@ -54,6 +56,7 @@ public class TransactionResultController : ControllerBase
         GetAllTransactionResultsByName([FromQuery]IEnumerable<string> name)
     {
         var result = transactionResultService.RetrieveTransactionResultByName(name);
+        
         return Ok(result);
     }
 }

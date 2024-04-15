@@ -1,6 +1,6 @@
 namespace MicrosAccounting.Api.Models.Categories;
 
-public enum CategoryAccount
+public enum Accounting
 {
     Income,
     Expense,

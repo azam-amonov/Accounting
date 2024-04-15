@@ -26,7 +26,7 @@ public class TransactionResultController : ControllerBase
     }
 
     [HttpGet("type/{type}")]
-    public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResultsByType(CategoryAccount type)
+    public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResultsByType(Accounting type)
     {
         var result = transactionResultService.RetrieveTransactionResultByAccounting(type);
         

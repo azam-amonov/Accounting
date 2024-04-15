@@ -26,10 +26,10 @@ public class TransactionResultService : ITransactionResultService
         return transactions;
     }
 
-    public IQueryable<TransactionResult> RetrieveTransactionResultByAccounting(CategoryAccount categoryAccount)
+    public IQueryable<TransactionResult> RetrieveTransactionResultByAccounting(Accounting accounting)
     {
         var transactionResult = storageBroker.SelectAllTransactions()
-            .Where(transaction => transaction.Category.Accounting == categoryAccount)
+            .Where(transaction => transaction.Category.Accounting == accounting)
             .Select(transaction => new TransactionResult
             {
                 Transaction = transaction,

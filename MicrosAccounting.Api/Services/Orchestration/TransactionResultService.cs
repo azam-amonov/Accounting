@@ -42,7 +42,7 @@ public class TransactionResultService : ITransactionResultService
     public IQueryable<TransactionResult> RetrieveTransactionResultByDate(DateTime date)
     {
         var transactionResult = storageBroker.SelectAllTransactions()
-            .Where(transaction => transaction.CreatedAt.Date == date.Date)
+            .Where(transaction => transaction.TransactionDate.Date == date.Date)
             .Select(transaction => new TransactionResult
             {
                 Transaction = transaction,
@@ -70,8 +70,8 @@ public class TransactionResultService : ITransactionResultService
         RetrieveTransactionResultBetweenDate(DateTime startDate, DateTime endDate)
     {
         var transactionResult = storageBroker.SelectAllTransactions()
-            .Where(transaction => transaction.CreatedAt.Date >= startDate 
-                                  && transaction.CreatedAt.Date <= endDate)
+            .Where(transaction => transaction.TransactionDate.Date >= startDate 
+                                  && transaction.TransactionDate.Date <= endDate)
             .Select(transaction => new TransactionResult
             {
                 Transaction = transaction,

@@ -99,7 +99,7 @@ namespace MicrosAccounting.Api.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("text");
 
-                    b.Property<DateTimeOffset>("CreatedAt")
+                    b.Property<DateTimeOffset>("TransactionDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("UserId")

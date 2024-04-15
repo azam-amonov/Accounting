@@ -92,7 +92,7 @@ namespace MicrosAccounting.Api.Migrations
 
             migrationBuilder.InsertData(
                 table: "Transaction",
-                columns: new[] { "Id", "Amount", "CategoryId", "Comment", "CreatedAt", "UserId" },
+                columns: new[] { "Id", "Amount", "CategoryId", "Comment", "TransactionDate", "UserId" },
                 values: new object[,]
                 {
                     { new Guid("070e7930-b979-43a2-b512-69ad2999c2c1"), 90m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("8121adf5-6db9-46bb-ae3b-60b547526438") },

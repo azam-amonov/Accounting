@@ -5,7 +5,7 @@ namespace MicrosAccounting.Api.Brokers.StorageBrokers;
 
 public partial class StorageBroker
 {
-    private void SeedCategory(EntityTypeBuilder<Category> builder)
+    private static void SeedCategory(EntityTypeBuilder<Category> builder)
     {
         builder.HasData(
             new Category

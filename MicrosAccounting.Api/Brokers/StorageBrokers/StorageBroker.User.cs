@@ -26,5 +26,4 @@ public partial class StorageBroker
 
         return deletedUser;
     }
-       
 }

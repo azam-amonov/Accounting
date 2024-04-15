@@ -5,7 +5,7 @@ namespace MicrosAccounting.Api.Brokers.StorageBrokers;
 
 public partial class StorageBroker
 {
-    private void SeedTransaction(EntityTypeBuilder<Transaction> builder)
+    private static void SeedTransaction(EntityTypeBuilder<Transaction> builder)
     {
         builder.HasData(new Transaction
         {

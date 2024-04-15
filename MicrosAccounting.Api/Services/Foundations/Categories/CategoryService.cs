@@ -25,6 +25,6 @@ public class CategoryService : ICategoryService
     public async ValueTask<Category> ModifyCategoryAsync(Category category) =>
         await this.storageBroker.UpdateCategoryAsync(category);
     
-    public async ValueTask<Category> RemoveCategoryByIdAsync(Guid categoryId) =>
+    public async ValueTask<Category?> RemoveCategoryByIdAsync(Guid categoryId) =>
         await this.storageBroker.DeleteCategoryByIdAsync(categoryId);
 }

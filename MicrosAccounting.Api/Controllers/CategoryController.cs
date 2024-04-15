@@ -53,7 +53,7 @@ public class CategoryController : ControllerBase
     
     public async ValueTask<ActionResult<Category>> DeleteByIdCategory(Guid categoryId)
     {
-        Category deleteCategory = await this.categoryService.RemoveCategoryByIdAsync(categoryId);
+        Category? deleteCategory = await this.categoryService.RemoveCategoryByIdAsync(categoryId);
         
         return Ok(deleteCategory);
     }

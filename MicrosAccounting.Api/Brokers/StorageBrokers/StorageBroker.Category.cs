@@ -19,7 +19,7 @@ public partial class StorageBroker
     public async ValueTask<Category> UpdateCategoryAsync(Category category) =>
         await this.UpdateAsync(category);
 
-    public async ValueTask<Category> DeleteCategoryByIdAsync(Guid categoryId)
+    public async ValueTask<Category?> DeleteCategoryByIdAsync(Guid categoryId)
     {
         var maybeCategory = await SelectCategoryByIdAsync(categoryId);
         return await this.DeleteAsync(maybeCategory);

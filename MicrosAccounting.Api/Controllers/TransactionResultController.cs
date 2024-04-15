@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicrosAccounting.Api.Controllers;
 //[Authorize]
 [ApiController]
-[Route("api[controller]")]
+[Route("api/[controller]")]
 public class TransactionResultController : ControllerBase
 {
     private readonly ITransactionResultService transactionResultService;

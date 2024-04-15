@@ -20,7 +20,8 @@ public class TransactionResultController : ControllerBase
     [HttpGet]
     public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResults()
     {
-        var result = transactionResultService.RetrieveAllTransactionResult();
+        var result = 
+            transactionResultService.RetrieveAllTransactionResult();
         
         return Ok(result);
     }
@@ -28,7 +29,8 @@ public class TransactionResultController : ControllerBase
     [HttpGet("type/{type}")]
     public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResultsByType(Accounting type)
     {
-        var result = transactionResultService.RetrieveTransactionResultByAccounting(type);
+        var result = 
+            transactionResultService.RetrieveTransactionResultByAccounting(type);
         
         return Ok(result);
     }
@@ -36,7 +38,8 @@ public class TransactionResultController : ControllerBase
     [HttpGet("date/{datetime}")]
     public ActionResult<IQueryable<TransactionResult>> GetAllTransactionResultsByDate(DateTime datetime)
     {
-        var result = transactionResultService.RetrieveTransactionResultByDate(datetime);
+        var result = 
+            transactionResultService.RetrieveTransactionResultByDate(datetime);
         
         return Ok(result);
     }
@@ -55,7 +58,8 @@ public class TransactionResultController : ControllerBase
     public ActionResult<IQueryable<TransactionResult>> 
         GetAllTransactionResultsByName([FromQuery]IEnumerable<string> name)
     {
-        var result = transactionResultService.RetrieveTransactionResultByName(name);
+        var result = 
+            transactionResultService.RetrieveTransactionResultByName(name);
         
         return Ok(result);
     }

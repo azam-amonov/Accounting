@@ -20,7 +20,8 @@ public class TransactionController : ControllerBase
     [HttpGet]
     public ActionResult<IQueryable<Transaction>> GetAllTransactions()
     {
-        IQueryable<Transaction> retrievedTransactions = transactionService.RetrieveAllTransactions();
+        IQueryable<Transaction> retrievedTransactions = 
+            transactionService.RetrieveAllTransactions();
 
         return Ok(retrievedTransactions);
     }

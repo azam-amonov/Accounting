@@ -49,7 +49,7 @@ public class CategoryController : ControllerBase
         return Ok(updateCategory);
     }
     
-    [HttpDelete("{categoryId}")]
+    [HttpDelete("{categoryId:guid}")]
     
     public async ValueTask<ActionResult<Category>> DeleteByIdCategory(Guid categoryId)
     {

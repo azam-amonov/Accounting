@@ -28,7 +28,7 @@ public class CategoryController : ControllerBase
     [HttpGet("id/{categoryId}")]
     public async ValueTask<ActionResult<Category>> GetCategoryById(Guid categoryId)
     {
-        Category category = await categoryService.RetrieveCategoryByIdAsync(categoryId);
+        Category? category = await categoryService.RetrieveCategoryByIdAsync(categoryId);
         
         return Ok(category);
     }

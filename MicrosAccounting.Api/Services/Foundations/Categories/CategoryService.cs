@@ -19,7 +19,7 @@ public class CategoryService : ICategoryService
     public IQueryable<Category> RetrieveAllCategories() =>
         this.storageBroker.SelectAllCategories();
 
-    public async ValueTask<Category> RetrieveCategoryByIdAsync(Guid categoryId) =>
+    public async ValueTask<Category?> RetrieveCategoryByIdAsync(Guid categoryId) =>
         await this.storageBroker.SelectCategoryByIdAsync(categoryId);
 
     public async ValueTask<Category> ModifyCategoryAsync(Category category) =>

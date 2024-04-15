@@ -24,6 +24,7 @@ public partial class StorageBroker
     {
         var maybeTransaction = await SelectTransactionByIdAsync(transactionId);
         var deletedTransaction = await this.DeleteAsync(maybeTransaction);
+        
         return deletedTransaction;
     }
 }

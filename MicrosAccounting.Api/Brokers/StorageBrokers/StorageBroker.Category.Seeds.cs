@@ -56,7 +56,6 @@ public partial class StorageBroker
                 Name = "Entertainment",
                 Accounting = Accounting.Expense,
                 Transactions = null
-            }
-        );
+            });
     }
 }

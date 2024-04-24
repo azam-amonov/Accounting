@@ -130,7 +130,7 @@ namespace MicrosAccounting.Api.Migrations
                             CategoryId = new Guid("71577dac-0a17-4a58-8285-7fdc5c008b4e"),
                             Comment = "some comment",
                             TransactionDate = new DateTimeOffset(new DateTime(2024, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            UserId = new Guid("8121adf5-6db9-46bb-ae3b-60b547526438")
+                            UserId = new Guid("47729a8b-e359-493e-a982-e7c818cd1220")
                         },
                         new
                         {
@@ -157,7 +157,7 @@ namespace MicrosAccounting.Api.Migrations
                             CategoryId = new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"),
                             Comment = "some comment",
                             TransactionDate = new DateTimeOffset(new DateTime(2024, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            UserId = new Guid("8121adf5-6db9-46bb-ae3b-60b547526438")
+                            UserId = new Guid("47729a8b-e359-493e-a982-e7c818cd1220")
                         },
                         new
                         {
@@ -175,7 +175,7 @@ namespace MicrosAccounting.Api.Migrations
                             CategoryId = new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"),
                             Comment = "some comment",
                             TransactionDate = new DateTimeOffset(new DateTime(2024, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)),
-                            UserId = new Guid("8121adf5-6db9-46bb-ae3b-60b547526438")
+                            UserId = new Guid("47729a8b-e359-493e-a982-e7c818cd1220")
                         });
                 });
 
@@ -203,12 +203,6 @@ namespace MicrosAccounting.Api.Migrations
                             Id = new Guid("47729a8b-e359-493e-a982-e7c818cd1220"),
                             Email = "adim@microsoft.com",
                             Password = "Hello!11"
-                        },
-                        new
-                        {
-                            Id = new Guid("8121adf5-6db9-46bb-ae3b-60b547526438"),
-                            Email = "user@microsoft.com",
-                            Password = "Hello!12"
                         });
                 });
 

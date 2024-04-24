@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace MicrosAccounting.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigratoins : Migration
+    public partial class InitialMigrations : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -46,7 +46,7 @@ namespace MicrosAccounting.Api.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     CategoryId = table.Column<Guid>(type: "uuid", nullable: false),
-                    CreatedAt = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
+                    TransactionDate = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: false),
                     Comment = table.Column<string>(type: "text", nullable: true),
                     Amount = table.Column<decimal>(type: "numeric", nullable: false)
                 },
@@ -84,23 +84,19 @@ namespace MicrosAccounting.Api.Migrations
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "Email", "Password" },
-                values: new object[,]
-                {
-                    { new Guid("47729a8b-e359-493e-a982-e7c818cd1220"), "adim@microsoft.com", "Hello!11" },
-                    { new Guid("8121adf5-6db9-46bb-ae3b-60b547526438"), "user@microsoft.com", "Hello!12" }
-                });
+                values: new object[] { new Guid("47729a8b-e359-493e-a982-e7c818cd1220"), "adim@microsoft.com", "Hello!11" });
 
             migrationBuilder.InsertData(
                 table: "Transaction",
                 columns: new[] { "Id", "Amount", "CategoryId", "Comment", "TransactionDate", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("070e7930-b979-43a2-b512-69ad2999c2c1"), 90m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("8121adf5-6db9-46bb-ae3b-60b547526438") },
+                    { new Guid("070e7930-b979-43a2-b512-69ad2999c2c1"), 90m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
                     { new Guid("5714ede8-db42-4fa0-845c-47ff57d29ff1"), 100m, new Guid("ed29109f-27df-43f5-b40d-8b2d12da3738"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
-                    { new Guid("71065dfc-eaef-4f96-a1f9-5291a8467a86"), 5000m, new Guid("71577dac-0a17-4a58-8285-7fdc5c008b4e"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("8121adf5-6db9-46bb-ae3b-60b547526438") },
+                    { new Guid("71065dfc-eaef-4f96-a1f9-5291a8467a86"), 5000m, new Guid("71577dac-0a17-4a58-8285-7fdc5c008b4e"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
                     { new Guid("72144c30-d401-4b4a-be4c-13dcf4a8e567"), 500m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
                     { new Guid("75b01b84-8590-4ce5-b2d6-b8fda47c2a4c"), 101m, new Guid("ed29109f-27df-43f5-b40d-8b2d12da3738"), "some comment", new DateTimeOffset(new DateTime(2024, 3, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
-                    { new Guid("75c56079-9619-44a3-88a4-7675b09817d0"), 40m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("8121adf5-6db9-46bb-ae3b-60b547526438") },
+                    { new Guid("75c56079-9619-44a3-88a4-7675b09817d0"), 40m, new Guid("0ca6c0a4-2a85-4b88-9c42-2fb86334b1ed"), "some comment", new DateTimeOffset(new DateTime(2024, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") },
                     { new Guid("7f45cc7a-75e5-43b3-9993-44a1a2f54c28"), 6000m, new Guid("1a99ed58-54fc-4c2d-b68d-f0f8c96f88c8"), "some comment", new DateTimeOffset(new DateTime(2024, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), new TimeSpan(0, 5, 0, 0, 0)), new Guid("47729a8b-e359-493e-a982-e7c818cd1220") }
                 });
 

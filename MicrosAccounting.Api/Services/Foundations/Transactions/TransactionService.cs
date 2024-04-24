@@ -1,5 +1,4 @@
 using MicrosAccounting.Api.Brokers.StorageBrokers;
-using MicrosAccounting.Api.Models.Categories;
 using MicrosAccounting.Api.Models.Transactions;
 
 namespace MicrosAccounting.Api.Services.Foundations.Transactions;

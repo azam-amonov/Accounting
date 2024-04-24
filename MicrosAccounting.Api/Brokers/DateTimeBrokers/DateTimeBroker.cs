@@ -2,6 +2,6 @@ namespace MicrosAccounting.Api.Brokers.DateTimeBrokers;
 
 public class DateTimeBroker : IDateTimeBroker
 {
-    public DateTimeOffset GetCurrentDateTimeOffset() =>
-        DateTimeOffset.UtcNow.AddHours(5);
+    public DateTime GetCurrentDateTime() =>
+        DateTime.UtcNow.AddHours(5);
 }

@@ -1,34 +1,42 @@
-# Accounting
+## Accounting Project
 
-----
-Project to save Income and Expenses.
-To run project on your machine clone it and on MicrosAccount.Api file add 
-migrations with code 
+This project allows you to easily track your income and expenses.
 
-`dotnet ef migrations add InitialMigartions`
+**Features:**
 
-`dotnet ef database update`
+* Record income and expenses
+* View your financial data
 
-before update database change ConnectionString on appsettings.json 
-to your configuration
+---
 
-````
-  "ConnectionStrings" : {
-    "DefaultConnection": "Host = localhost, Port = 5234; Database = PersonalAccounting; Username = postgres; Password = qwerty"
-  }
-````
+### **Getting Started**
 
-To use Front side of project install
-https://github.com/azam-amonov/AccountingTable.Web.git
+####  **Clone the project:**
 
-enter your configuration in apiConfig
-````
+   ```bash
+   git clone git@github.com:azam-amonov/AccountingTable.Web.git
+```
 
-├── src
-│   ├── api
-│   │   └── apiConfig.js
+### Set up database:
+1. **Install the .NET CLI (if not already installed):**
+    > Follow the instructions on the official Microsoft documentation: https://learn.microsoft.com/en-us/dotnet/core/install/windows
 
-````
-
-replace teh host with your!
+2. **Update database connection string (appsettings.json):**
+    > Open appsettings.json and replace the placeholder values in the DefaultConnection property with your actual 
+     database configuration:
+      >``` json
+      > "ConnectionStrings" : {
+      >     "DefaultConnection": "Host=localhost; Port=5432; Database=PersonalAccounting; Username=postgres; Password=your_password" }
+    
+   - Replace localhost with your database server address if it's different.
+   - Replace 5432 with your database port (default for PostgreSQL is 5432).
+   - Replace PersonalAccounting with your desired database name.
+   - Replace postgres with your database username.
+   - Replace your_password with your actual database password.
+3. **Run database migrations:**
+   > Navigate to the project directory and execute these commands:
+    > ```
+    > cd Accounting/MicrosAccount.Api
+    > dotnet ef migrations add InitialMigrations
+    > dotnet ef database update
 

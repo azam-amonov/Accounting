@@ -40,3 +40,22 @@ This project allows you to easily track your income and expenses.
     > dotnet ef migrations add InitialMigrations
     > dotnet ef database update
 
+### Frontend Installation
+#### If you want to use a web-based interface for managing your finances, you can install the AccountingTable.Web project from GitHub:
+1. Install the frontend from this [repository].
+    ``` bash
+    git clone git@github.com:azam-amonov/AccountingTable.Web.git
+   
+2. Inside the `src/api` directory, locate the `apiConfig.js file.
+    ``` text
+    ├── src
+    │   ├── api
+    │   │   └── apiConfig.js
+
+3. Replace the host in the `apiConfig.js` file with your own configuration.
+    ``` react
+    const BASE_URL = 'https://localhost:5177/api'
+    export default BASE_URL;
+    ```
+
+[repository]: https://github.com/azam-amonov/AccountingTable.Web

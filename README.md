@@ -35,7 +35,7 @@ This project allows you to easily track your income and expenses.
    - Replace your_password with your actual database password.
 3. **Run database migrations:**
    > Navigate to the project directory and execute these commands:
-    > ```
+    > ``` bash
     > cd Accounting/MicrosAccount.Api
     > dotnet ef migrations add InitialMigrations
     > dotnet ef database update

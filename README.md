@@ -40,6 +40,9 @@ This project allows you to easily track your income and expenses.
     > dotnet ef migrations add InitialMigrations
     > dotnet ef database update
 
+
+---
+
 ### Frontend Installation
 #### If you want to use a web-based interface for managing your finances, you can install the AccountingTable.Web project from GitHub:
 1. Install the frontend from this [repository].
